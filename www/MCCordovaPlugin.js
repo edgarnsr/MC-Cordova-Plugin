@@ -318,7 +318,46 @@ var MCCordovaPlugin = {
     track: function(eventName, attributesMap) {
         argsCheck.checkArgs('soFF', `${PLUGIN_NAME}.track`, arguments);
         _exec(undefined, undefined, 'track', [eventName, attributesMap]);
-    }
+    },
+    
+    /**
+     * Geofence messaging - start watching location
+     *
+     * @param   {function}  successCallback  returns empty result
+     * @param   {function}  errorCallback    [errorCallback description]
+     *
+     * @return  {function}                   [return description]
+     */
+    startWatchingLocation: function(successCallback, errorCallback) {
+        argsCheck.checkArgs('FF', `${PLUGIN_NAME}.startWatchingLocation`, arguments);
+        _exec(successCallback, errorCallback, 'startWatchingLocation');
+    },
+
+    /**
+     * Geofence messaging - stop watching location
+     *
+     * @param   {function}  successCallback  returns empty result
+     * @param   {function}  errorCallback    [errorCallback description]
+     *
+     * @return  {function}                   [return description]
+     */
+    stopWatchingLocation: function(successCallback, errorCallback) {
+        argsCheck.checkArgs('FF', `${PLUGIN_NAME}.stopWatchingLocation`, arguments);
+        _exec(successCallback, errorCallback, 'stopWatchingLocation');
+    },
+
+    /**
+     * Geofence messaging - watching location
+     *
+     * @param   {[type]}  successCallback  returns whether watching location is enabled
+     * @param   {[type]}  errorCallback    [errorCallback description]
+     *
+     * @return  {[type]}                   [return description]
+     */
+    watchingLocation: function(successCallback, errorCallback) {
+        argsCheck.checkArgs('FF', `${PLUGIN_NAME}.watchingLocation`, arguments);
+        _exec(successCallback, errorCallback, 'watchingLocation');
+    },
 
 };
 
