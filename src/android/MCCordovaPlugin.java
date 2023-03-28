@@ -25,6 +25,7 @@
  */
 package com.salesforce.marketingcloud.cordova;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -307,9 +308,48 @@ public class MCCordovaPlugin extends CordovaPlugin implements UrlHandler {
                 return logSdkState();
             case "track":
                 return track();
+            case "startWatchingLocation":
+                return startWatchingLocation();
+            case "stopWatchingLocation":
+                return stopWatchingLocation();
+            case "watchingLocation":
+                return watchingLocation();
             default:
                 return null;
         }
+    }
+    
+    private ActionHandler startWatchingLocation() {
+        return new ActionHandler() {
+            @Override
+            public void execute(
+                    MarketingCloudSdk sdk, JSONArray args, CallbackContext callbackContext) {
+                @SuppressLint("MissingPermission") boolean success = sdk.getRegionMessageManager().enableGeofenceMessaging();
+                callbackContext.success(success ? 1 : 0);
+            }
+        };
+    }
+
+    private ActionHandler stopWatchingLocation() {
+        return new ActionHandler() {
+            @Override
+            public void execute(
+                    MarketingCloudSdk sdk, JSONArray args, CallbackContext callbackContext) {
+                sdk.getRegionMessageManager().disableGeofenceMessaging();
+                callbackContext.success();
+            }
+        };
+    }
+
+    private ActionHandler watchingLocation() {
+        return new ActionHandler() {
+            @Override
+            public void execute(
+                    MarketingCloudSdk sdk, JSONArray args, CallbackContext callbackContext) {
+                boolean enabled = sdk.getRegionMessageManager().isGeofenceMessagingEnabled();
+                callbackContext.success(enabled ? 1 : 0);
+            }
+        };
     }
 
     private ActionHandler getContactKey() {
