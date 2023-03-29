@@ -50,6 +50,8 @@
     <source-file src="src/android/MCSdkConfig.java" target-dir="src/com/salesforce/marketingcloud/cordova" />
     <source-file src="src/android/MCInitProvider.java" target-dir="src/com/salesforce/marketingcloud/cordova" />
     <source-file src="src/android/MCSdkListener.java" target-dir="src/com/salesforce/marketingcloud/cordova" />
+    
+    <framework src="com.google.android.gms:play-services-location:19.0.1" />
 
   </platform>
 
