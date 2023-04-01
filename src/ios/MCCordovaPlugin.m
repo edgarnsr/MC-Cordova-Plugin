@@ -408,4 +408,23 @@ const int LOG_LENGTH = 800;
     [[MarketingCloudSDK sharedInstance] sfmc_track:[SFMCEvent customEventWithName:name withAttributes:attributes]];
 }
 
+- (void)startWatchingLocation:(CDVInvokedUrlCommand *)command {
+    [[MarketingCloudSDK sharedInstance] sfmc_startWatchingLocation];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)sfmc_stopWatchingLocation:(CDVInvokedUrlCommand *)command {
+    [[MarketingCloudSDK sharedInstance] sfmc_stopWatchingLocation];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)watchingLocation:(CDVInvokedUrlCommand *)command {
+    BOOL success = [[MarketingCloudSDK sharedInstance] sfmc_watchingLocation];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                            messageAsInt:(success) ? 1 : 0]
+     callbackId:command.callbackId];
+}
+
 @end
