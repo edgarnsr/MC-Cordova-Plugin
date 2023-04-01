@@ -144,6 +144,11 @@ const int LOG_LENGTH = 800;
         if (tse != nil) {
             [configBuilder sfmc_setMarketingCloudServerUrl:tse];
         }
+        
+        NSString *gfm = pluginSettings[@"com.salesforce.marketingcloud.geofence_messaging"];
+        if ([gfm caseInsensitiveCompare:@"true"] == NSOrderedSame) {
+            [configBuilder sfmc_setLocationEnabled:@YES];
+        }
 
         NSError *configError = nil;
         if ([[MarketingCloudSDK sharedInstance]
