@@ -56,6 +56,10 @@
 - (void)subscribe:(CDVInvokedUrlCommand *)command;
 - (void)track:(CDVInvokedUrlCommand *)command;
 
+- (void)startWatchingLocation:(CDVInvokedUrlCommand *)command;
+- (void)stopWatchingLocation:(CDVInvokedUrlCommand *)command;
+- (void)watchingLocation:(CDVInvokedUrlCommand *)command;
+
 @property(nonatomic, copy) NSString *eventsCallbackId;
 @property(nonatomic, assign) BOOL notificationOpenedSubscribed;
 @property(nonatomic, strong) NSDictionary *cachedNotification;
