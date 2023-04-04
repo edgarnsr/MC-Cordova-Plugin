@@ -415,11 +415,12 @@ const int LOG_LENGTH = 800;
 
 - (void)startWatchingLocation:(CDVInvokedUrlCommand *)command {
     [[MarketingCloudSDK sharedInstance] sfmc_startWatchingLocation];
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-                                callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                            messageAsInt:1]
+     callbackId:command.callbackId];
 }
 
-- (void)sfmc_stopWatchingLocation:(CDVInvokedUrlCommand *)command {
+- (void)stopWatchingLocation:(CDVInvokedUrlCommand *)command {
     [[MarketingCloudSDK sharedInstance] sfmc_stopWatchingLocation];
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
